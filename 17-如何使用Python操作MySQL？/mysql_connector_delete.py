@@ -15,12 +15,11 @@ db = mysql.connector.connect(
 
 # 获取操作游标
 cursor = db.cursor()
-# 执行 SQL 语句
-cursor.execute('SELECT VERSION()')
-# 获取一条数据
-data = cursor.fetchone()
-print('MySQL 版本: {}'.format(data))
-
-# 关闭游标 & 数据库链接
+# 删除球员 约翰-科林斯
+sql = 'DELETE FROM player WHERE player_name = %s'
+val = ('约翰-科林斯')
+cursor.execute(sql, val)
+db.commit()
+print(cursor.rowcount, '记录删除成功。')
 cursor.close()
 db.close()
