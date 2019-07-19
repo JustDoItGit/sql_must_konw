@@ -17,7 +17,7 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 # 删除球员 约翰-科林斯
 sql = 'DELETE FROM player WHERE player_name = %s'
-val = ('约翰-科林斯')
+val = ('约翰-科林斯',)
 cursor.execute(sql, val)
 db.commit()
 print(cursor.rowcount, '记录删除成功。')
