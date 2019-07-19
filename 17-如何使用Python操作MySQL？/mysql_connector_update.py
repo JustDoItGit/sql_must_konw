@@ -15,12 +15,11 @@ db = mysql.connector.connect(
 
 # 获取操作游标
 cursor = db.cursor()
-# 查询身高大于等于 2.08 的球员
-sql = 'SELECT player_id, player_name, height FROM player WHERE height >= 2.08'
-cursor.execute(sql)
-data = cursor.fetchall()
-for each_player in data:
-    print(each_player)
-# 关闭游标 & 数据库链接
+# 修改球员 约翰-科林斯
+sql = 'UPDATE player SET height = %s WHERE player_name = %s'
+val = (2.09, '约翰-科林斯')
+cursor.execute(sql, val)
+db.commit()
+print(cursor.rowcount, '记录被修改。')
 cursor.close()
 db.close()
