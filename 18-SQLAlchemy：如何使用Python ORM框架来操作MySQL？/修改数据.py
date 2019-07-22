@@ -36,6 +36,9 @@ session = DBSession()
 row = session.query(Player).filter(Player.player_name == '索恩-马克').first()
 # 修改数据
 row.height = 2.17
+
+# 批量修改数据
+session.query(Player).filter(Player.height == 2.08).update({'height': 2.09})
 # 提交及保存到数据库
 session.commit()
 # 关闭 session
