@@ -9,10 +9,12 @@ with open('mysql.json', encoding='utf-8') as con_json:
 
 engine = create_engine(
     'mysql+mysqlconnector://{}:{}@{}:3306/{}'.format(con_dict['user'], con_dict['passwd'], con_dict['host'],
-                                                     con_dict['database']))
+                                                     con_dict['database']),
+    connect_args={'auth_plugin': 'mysql_native_password'})
 
 # 创建对象的基本类
 Base = declarative_base()
+
 
 # 定义 Player 对象
 class Player(Base):
